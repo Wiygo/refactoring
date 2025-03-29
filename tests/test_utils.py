@@ -1,7 +1,7 @@
 import unittest
 import json
 import os
-from utils import print_supported_languages, save_translation_to_file, load_translation_history, show_translation_history
+from utils import save_translation_to_file, load_translation_history, show_translation_history
 
 class TestUtils(unittest.TestCase):
     
