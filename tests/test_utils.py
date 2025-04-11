@@ -7,19 +7,16 @@ from utils import save_translation_to_file, load_translation_history, show_trans
 class TestUtils(unittest.TestCase):
     
     def setUp(self):
-        # Создаем временный файл для тестов
         self.temp_file = NamedTemporaryFile(delete=False, mode='w+', encoding='utf-8')
         self.test_filename = self.temp_file.name
         self.original_text = "Hello"
         self.translations = {"en": "Hello", "fr": "Bonjour", "de": "Hallo"}
 
     def tearDown(self):
-        """Удаляем временный файл после теста."""
         if os.path.exists(self.test_filename):
             os.remove(self.test_filename)
 
     def save_test_data(self):
-        """Сохраняет тестовые данные в файл."""
         save_translation_to_file(self.translations, self.original_text, self.test_filename)
 
     def test_save_translation_to_file(self):
@@ -56,7 +53,6 @@ class TestUtils(unittest.TestCase):
             self.assertIn(self.translations[lang], output)
 
     def test_load_translation_history_invalid_json(self):
-        # Записываем некорректные данные в файл
         with open(self.test_filename, 'w', encoding='utf-8') as f:
             f.write("invalid json")
         
